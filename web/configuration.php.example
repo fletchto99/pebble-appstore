@@ -1,0 +1,25 @@
+<?php
+
+class Configuration {
+
+    //API URLs
+    CONST PEBBLE_API_URL = "https://api2.getpebble.com/v2/";
+
+    //API Endpoints
+    CONST PEBBLE_APP_COLLECTIONS_AND_CATEGORIES = "home/apps";
+    CONST PEBBLE_WATCHFACE_COLLECTIONS = "home/faces";
+    CONST PPEBBLE_APP_CATEGORY = "apps/category/";
+    CONST PEBBLE_COLLECTION = "apps/collection/";
+    CONST PEBBLE_COLLECTION_WATCHAPPS = "/watchapps-and-companions";
+    CONST PEBBLE_COLLECTION_WATCHAFACES = "/watchfaces";
+    CONST PEBBLE_ALL_APPS = "apps/collection/all/watchapps-and-companions";
+    CONST PEBBLE_ALL_WATCHFACES = "apps/collection/all/watchfaces";
+    CONST PEBBLE_SINGLE_APP = "apps/id/";
+
+    //Developer settings
+    CONST DEBUG              = false;
+    CONST DEVELOPER_PASSWORD = '<PASSWORD>';
+
+    //Other settings
+    CONST MAINTENANCE_MODE = false;
+}
