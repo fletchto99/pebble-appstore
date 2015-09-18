@@ -7,9 +7,11 @@ var apps = require('Apps');
 //Setup the app, display a splash screen
 setTimeout(function() {
     var menuItems = [{
-        title: 'Apps'
+        title: 'Apps',
+        icon: 'IMAGE_APPS_ICON'
     }, {
-        title: 'Faces'
+        title: 'Faces',
+        icon: 'IMAGE_WATCHFACES_ICON'
     }, {
         title: 'About',
         icon: 'IMAGE_INFO_ICON'

@@ -1,13 +1,16 @@
 var functions = require('functions');
 var UI = require('ui');
+var singleapp = require('SingleApp');
 
 var Faces = module.exports;
 
 Faces.display = function () {
     var menuItems = [{
-        title: 'All Watchfaces'
+        title: 'All Watchfaces',
+        icon: 'IMAGE_WATCHFACES_ICON'
     }, {
-        title: 'Collections'
+        title: 'Collections',
+        icon: 'IMAGE_COLLECTION_ICON'
     }];
     var facesMenu = new UI.Menu({
         sections: [{
@@ -31,16 +34,15 @@ function displayAllFaces(offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        var menuItems = [data.watchapps.length + 1];
-        for (var i = 0; i < data.watchapps.length; i++) {
+        var menuItems = [data.watchfaces.length + 1];
+        for (var i = 0; i < data.watchfaces.length; i++) {
             menuItems[i] = {
-                title: data.watchapps[i].title,
-                subtitle: 'By ' + data.watchapps[i].author,
-                id: data.watchapps[i].id,
-                icon: data.watchapps[i].icon_image['28x28']
+                title: data.watchfaces[i].title,
+                subtitle: 'By ' + data.watchfaces[i].author,
+                id: data.watchfaces[i].id
             };
         }
-        menuItems[data.watchapps.length] = {
+        menuItems[data.watchfaces.length] = {
             title:'Load Next 20'
         };
         var menu = new UI.Menu({
@@ -50,7 +52,7 @@ function displayAllFaces(offset) {
             }]
         });
         menu.on('select', function(event) {
-            console.log(event.item.icon);
+            singleapp.display(event.item.id);
         });
         menu.show();
     };
@@ -92,16 +94,15 @@ function displayFacesInCollection(collection, offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        var menuItems = [data.watchapps.length + 1];
-        for (var i = 0; i < data.watchapps.length; i++) {
+        var menuItems = [data.watchfaces.length + 1];
+        for (var i = 0; i < data.watchfaces.length; i++) {
             menuItems[i] = {
-                title: data.watchapps[i].title,
-                subtitle: 'By ' + data.watchapps[i].author,
-                id: data.watchapps[i].id,
-                icon: data.watchapps[i].icon_image['28x28']
+                title: data.watchfaces[i].title,
+                subtitle: 'By ' + data.watchfaces[i].author,
+                id: data.watchfaces[i].id
             };
         }
-        menuItems[data.watchapps.length] = {
+        menuItems[data.watchfaces.length] = {
             title:'Load Next 20'
         };
         var menu = new UI.Menu({
@@ -111,7 +112,7 @@ function displayFacesInCollection(collection, offset) {
             }]
         });
         menu.on('select', function(event) {
-            console.log(event.item.icon);
+            singleapp.display(event.item.id);
         });
         menu.show();
     };

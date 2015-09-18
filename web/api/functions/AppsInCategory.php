@@ -9,7 +9,7 @@ class AppsInCategory {
     }
 
     function execute() {
-        $data = Functions::makeAPICall(Configuration::PEBBLE_API_URL . Configuration::PPEBBLE_APP_CATEGORY .$this->category . '?limit=100&image_ratio=1&filter_hardware=true&platform=' . $this->platform . '&offset=' . $this->offset);
-        return ['watchapps' => $data['data'], 'offset'=>intval($this->offset)+100];
+        $data = Functions::makeAPICall(Configuration::PEBBLE_API_URL . Configuration::PPEBBLE_APP_CATEGORY .$this->category . '?limit=20&image_ratio=1&filter_hardware=true&platform=' . $this->platform . '&offset=' . $this->offset);
+        return ['watchapps' => $data['data'], 'offset'=>intval($this->offset)+20];
     }
 }

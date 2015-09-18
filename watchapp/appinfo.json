@@ -40,6 +40,16 @@
                   },
                   {
                     "type": "png",
+                    "name": "IMAGE_APPS_ICON",
+                    "file": "images/apps.png"
+                  },
+                  {
+                    "type": "png",
+                    "name": "IMAGE_WATCHFACES_ICON",
+                    "file": "images/watchface.png"
+                  },
+                  {
+                    "type": "png",
                     "name": "IMAGE_LOADING_ICON",
                     "file": "images/loading.png"
                   },

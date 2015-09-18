@@ -1,15 +1,19 @@
 var functions = require('functions');
 var UI = require('ui');
+var singleapp = require('SingleApp');
 
 var Apps = module.exports;
 
 Apps.display = function () {
     var menuItems = [{
-        title: 'All Apps'
+        title: 'All Apps',
+        icon: 'IMAGE_APPS_ICON'
     }, {
-        title: 'Categories'
+        title: 'Categories',
+        icon: 'IMAGE_CATEGORY_ICON'
     }, {
-        title: 'Collections'
+        title: 'Collections',
+        icon: 'IMAGE_COLLECTION_ICON'
     }];
     var facesMenu = new UI.Menu({
         sections: [{
@@ -54,7 +58,7 @@ function displayAllApps(offset) {
             }]
         });
         menu.on('select', function(event) {
-            console.log(event.item.icon);
+            singleapp.display(event.item.id);
         });
         menu.show();
     };
@@ -111,12 +115,12 @@ function displayAppsInCategory(category, offset) {
         };
         var menu = new UI.Menu({
             sections: [{
-                title: 'All Apps',
+                title: 'Apps',
                 items: menuItems
             }]
         });
         menu.on('select', function(event) {
-            console.log(event.item.icon);
+            singleapp.display(event.item.id);
         });
         menu.show();
     };
@@ -153,12 +157,13 @@ function displayCollections() {
 
 function displayAppsInCollection(collection, offset) {
     var data = {
-        method: 'faces_in_collection',
+        method: 'apps_in_collection',
         platform: 'basalt',
         collection: collection,
         offset: offset
     };
     var onSuccess = function(data) {
+        console.log(data.length);
         var menuItems = [data.watchapps.length + 1];
         for (var i = 0; i < data.watchapps.length; i++) {
             menuItems[i] = {
@@ -173,12 +178,12 @@ function displayAppsInCollection(collection, offset) {
         };
         var menu = new UI.Menu({
             sections: [{
-                title: 'All Apps',
+                title: 'Apps',
                 items: menuItems
             }]
         });
         menu.on('select', function(event) {
-            console.log(event.item.icon);
+            singleapp.display(event.item.id);
         });
         menu.show();
     };
