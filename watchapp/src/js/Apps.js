@@ -39,7 +39,21 @@ function displayAllApps(offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        var menuItems = [data.watchapps.length + 1];
+        var next = false;
+        var prev = false;
+        var nextItem = {
+            title: 'Load Next 20'
+        };
+        var prevItem = {
+            title: 'Load Previous 20'
+        };
+        if (data.offset != null) {
+            next = true;
+        }
+        if (data.offset >= 20) {
+            prev = true;
+        }
+        var menuItems = [data.watchapps.length];
         for (var i = 0; i < data.watchapps.length; i++) {
             menuItems[i] = {
                 title: data.watchapps[i].title,
@@ -48,9 +62,12 @@ function displayAllApps(offset) {
                 icon: data.watchapps[i].icon_image['28x28']
             };
         }
-        menuItems[data.watchapps.length] = {
-            title:'Load Next 20'
-        };
+        if (next) {
+            menuItems.push(nextItem);
+        }
+        if (prev) {
+            menuItems.push(prevItem);
+        }
         var menu = new UI.Menu({
             sections: [{
                 title: 'All Apps',
@@ -58,7 +75,15 @@ function displayAllApps(offset) {
             }]
         });
         menu.on('select', function(event) {
-            singleapp.display(event.item.id);
+            if (event.item == nextItem) {
+                displayAllApps(data.offset);
+                menu.hide();
+            } if (event.item == prevItem) {
+                displayAllApps(Math.max(0 ,offset - 20));
+                menu.hide();
+            } else {
+                singleapp.display(event.item.id);
+            }
         });
         menu.show();
     };
@@ -101,7 +126,21 @@ function displayAppsInCategory(category, offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        var menuItems = [data.watchapps.length + 1];
+        var next = false;
+        var prev = false;
+        var nextItem = {
+            title: 'Load Next 20'
+        };
+        var prevItem = {
+            title: 'Load Previous 20'
+        };
+        if (data.offset != null) {
+            next = true;
+        }
+        if (data.offset >= 20) {
+            prev = true;
+        }
+        var menuItems = [data.watchapps.length];
         for (var i = 0; i < data.watchapps.length; i++) {
             menuItems[i] = {
                 title: data.watchapps[i].title,
@@ -110,9 +149,12 @@ function displayAppsInCategory(category, offset) {
                 icon: data.watchapps[i].icon_image['28x28']
             };
         }
-        menuItems[data.watchapps.length] = {
-            title:'Load Next 20'
-        };
+        if (next) {
+            menuItems.push(nextItem);
+        }
+        if (prev) {
+            menuItems.push(prevItem);
+        }
         var menu = new UI.Menu({
             sections: [{
                 title: 'Apps',
@@ -120,7 +162,15 @@ function displayAppsInCategory(category, offset) {
             }]
         });
         menu.on('select', function(event) {
-            singleapp.display(event.item.id);
+            if (event.item == nextItem) {
+                displayAppsInCategory(category, data.offset);
+                menu.hide();
+            } if (event.item == prevItem) {
+                displayAppsInCategory(category, Math.max(0 ,offset - 20));
+                menu.hide();
+            } else {
+                singleapp.display(event.item.id);
+            }
         });
         menu.show();
     };
@@ -148,7 +198,11 @@ function displayCollections() {
             }]
         });
         menu.on('select', function(event) {
-            displayAppsInCollection(event.item.slug, 0);
+            if (event.itemIndex === data.collections.length) {
+
+            } else {
+                displayAppsInCollection(event.item.slug, 0);
+            }
         });
         menu.show();
     };
@@ -163,8 +217,21 @@ function displayAppsInCollection(collection, offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        console.log(data.length);
-        var menuItems = [data.watchapps.length + 1];
+        var next = false;
+        var prev = false;
+        var nextItem = {
+            title: 'Load Next 20'
+        };
+        var prevItem = {
+            title: 'Load Previous 20'
+        };
+        if (data.offset != null) {
+            next = true;
+        }
+        if (data.offset >= 20) {
+            prev = true;
+        }
+        var menuItems = [data.watchapps.length];
         for (var i = 0; i < data.watchapps.length; i++) {
             menuItems[i] = {
                 title: data.watchapps[i].title,
@@ -173,9 +240,12 @@ function displayAppsInCollection(collection, offset) {
                 icon: data.watchapps[i].icon_image['28x28']
             };
         }
-        menuItems[data.watchapps.length] = {
-            title:'Load Next 20'
-        };
+        if (next) {
+            menuItems.push(nextItem);
+        }
+        if (prev) {
+            menuItems.push(prevItem);
+        }
         var menu = new UI.Menu({
             sections: [{
                 title: 'Apps',
@@ -183,7 +253,15 @@ function displayAppsInCollection(collection, offset) {
             }]
         });
         menu.on('select', function(event) {
-            singleapp.display(event.item.id);
+            if (event.item == nextItem) {
+                displayAppsInCollection(collection, data.offset);
+                menu.hide();
+            } if (event.item == prevItem) {
+                displayAppsInCollection(collection, Math.max(0 ,offset - 20));
+                menu.hide();
+            } else {
+                singleapp.display(event.item.id);
+            }
         });
         menu.show();
     };

@@ -34,7 +34,21 @@ function displayAllFaces(offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        var menuItems = [data.watchfaces.length + 1];
+        var next = false;
+        var prev = false;
+        var nextItem = {
+            title: 'Load Next 20'
+        };
+        var prevItem = {
+            title: 'Load Previous 20'
+        };
+        if (data.offset != null) {
+            next = true;
+        }
+        if (data.offset >= 20) {
+            prev = true;
+        }
+        var menuItems = [data.watchfaces.length];
         for (var i = 0; i < data.watchfaces.length; i++) {
             menuItems[i] = {
                 title: data.watchfaces[i].title,
@@ -42,9 +56,12 @@ function displayAllFaces(offset) {
                 id: data.watchfaces[i].id
             };
         }
-        menuItems[data.watchfaces.length] = {
-            title:'Load Next 20'
-        };
+        if (next) {
+            menuItems.push(nextItem);
+        }
+        if (prev) {
+            menuItems.push(prevItem);
+        }
         var menu = new UI.Menu({
             sections: [{
                 title: 'All Apps',
@@ -52,7 +69,15 @@ function displayAllFaces(offset) {
             }]
         });
         menu.on('select', function(event) {
-            singleapp.display(event.item.id);
+            if (event.item == nextItem) {
+                displayAllFaces(data.offset);
+                menu.hide();
+            } if (event.item == prevItem) {
+                displayAllFaces(Math.max(0 ,offset - 20));
+                menu.hide();
+            } else {
+                singleapp.display(event.item.id);
+            }
         });
         menu.show();
     };
@@ -94,7 +119,21 @@ function displayFacesInCollection(collection, offset) {
         offset: offset
     };
     var onSuccess = function(data) {
-        var menuItems = [data.watchfaces.length + 1];
+        var next = false;
+        var prev = false;
+        var nextItem = {
+            title: 'Load Next 20'
+        };
+        var prevItem = {
+            title: 'Load Previous 20'
+        };
+        if (data.offset != null) {
+            next = true;
+        }
+        if (data.offset >= 20) {
+            prev = true;
+        }
+        var menuItems = [data.watchfaces.length];
         for (var i = 0; i < data.watchfaces.length; i++) {
             menuItems[i] = {
                 title: data.watchfaces[i].title,
@@ -102,9 +141,12 @@ function displayFacesInCollection(collection, offset) {
                 id: data.watchfaces[i].id
             };
         }
-        menuItems[data.watchfaces.length] = {
-            title:'Load Next 20'
-        };
+        if (next) {
+            menuItems.push(nextItem);
+        }
+        if (prev) {
+            menuItems.push(prevItem);
+        }
         var menu = new UI.Menu({
             sections: [{
                 title: 'All Apps',
@@ -112,7 +154,15 @@ function displayFacesInCollection(collection, offset) {
             }]
         });
         menu.on('select', function(event) {
-            singleapp.display(event.item.id);
+            if (event.item == nextItem) {
+                displayFacesInCollection(collection,data.offset);
+                menu.hide();
+            } if (event.item == prevItem) {
+                displayFacesInCollection(collection,Math.max(0 ,offset - 20));
+                menu.hide();
+            } else {
+                singleapp.display(event.item.id);
+            }
         });
         menu.show();
     };
