@@ -1,6 +1,7 @@
 var functions = require('functions');
 var UI = require('ui');
 var singleapp = require('SingleApp');
+var platform = require('platform');
 
 var Apps = module.exports;
 
@@ -35,7 +36,7 @@ Apps.display = function () {
 function displayAllApps(offset) {
     var data = {
         method: 'all_apps',
-        platform: 'basalt',
+        platform: platform.version(),
         offset: offset
     };
     var onSuccess = function(data) {
@@ -94,7 +95,7 @@ function displayAllApps(offset) {
 function displayCategories() {
     var data = {
         method: 'app_categories',
-        platform: 'basalt'
+        platform: platform.version()
     };
     var onSuccess = function(data) {
         var menuItems = [data.categories.length];
@@ -121,7 +122,7 @@ function displayCategories() {
 function displayAppsInCategory(category, offset) {
     var data = {
         method: 'apps_in_category',
-        platform: 'basalt',
+        platform: platform.version(),
         category: category,
         offset: offset
     };
@@ -181,7 +182,7 @@ function displayAppsInCategory(category, offset) {
 function displayCollections() {
     var data = {
         method: 'app_collections',
-        platform: 'basalt'
+        platform: platform.version()
     };
     var onSuccess = function(data) {
         var menuItems = [data.collections.length];
@@ -212,7 +213,7 @@ function displayCollections() {
 function displayAppsInCollection(collection, offset) {
     var data = {
         method: 'apps_in_collection',
-        platform: 'basalt',
+        platform: platform.version(),
         collection: collection,
         offset: offset
     };

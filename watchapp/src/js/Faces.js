@@ -1,6 +1,7 @@
 var functions = require('functions');
 var UI = require('ui');
 var singleapp = require('SingleApp');
+var platform = require('platform');
 
 var Faces = module.exports;
 
@@ -30,7 +31,7 @@ Faces.display = function () {
 function displayAllFaces(offset) {
     var data = {
         method: 'all_faces',
-        platform: 'basalt',
+        platform: platform.version(),
         offset: offset
     };
     var onSuccess = function(data) {
@@ -87,7 +88,7 @@ function displayAllFaces(offset) {
 function displayCollections() {
     var data = {
         method: 'face_collections',
-        platform: 'basalt'
+        platform: platform.version()
     };
     var onSuccess = function(data) {
         var menuItems = [data.collections.length];
@@ -114,7 +115,7 @@ function displayCollections() {
 function displayFacesInCollection(collection, offset) {
     var data = {
         method: 'faces_in_collection',
-        platform: 'basalt',
+        platform: platform.version(),
         collection: collection,
         offset: offset
     };
