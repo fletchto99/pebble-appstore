@@ -73,14 +73,15 @@ SingleApp.display = function (appid) {
                     }
                 });
             } else if (e.itemIndex == 2) {
+                var preparing = functions.showCard(null, 'Preparing...','','', functions.getColorOptions('DATA'));
                 //Install via Pebble Protocall as seen in CloudPebble
                 var connection = new WebSocket('ws://localhost:9000');
                 connection.binaryType = "arraybuffer";
                 connection.onerror = function (e) {
-                    functions.showErrorCard('Error installing app!');
+                    functions.showErrorCard('Error installing app!',preparing);
                 };
                 connection.onopen = function() {
-                    functions.showCard(null, 'Installing...','','Installing ' + data.appinfo.title, functions.getColorOptions('DATA'))
+                    functions.showCard(null, 'Installing...','','', functions.getColorOptions('DATA'),preparing);
                     console.log("Starting install process.");
                     var request = new XMLHttpRequest();
                     request.open('get', data.appinfo.latest_release.pbw_file, true);
