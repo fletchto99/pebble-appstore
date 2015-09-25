@@ -50,7 +50,7 @@ function displayAllApps(offset) {
         if (data.offset != null) {
             next = true;
         }
-        if (data.offset >= 20) {
+        if (data.offset > 20) {
             prev = true;
         }
         var menuItems = [data.watchapps.length];
@@ -137,7 +137,7 @@ function displayAppsInCategory(category, offset) {
         if (data.offset != null) {
             next = true;
         }
-        if (data.offset >= 20) {
+        if (data.offset > 20) {
             prev = true;
         }
         var menuItems = [data.watchapps.length];
@@ -228,7 +228,7 @@ function displayAppsInCollection(collection, offset) {
         if (data.offset != null) {
             next = true;
         }
-        if (data.offset >= 20) {
+        if (data.offset > 20) {
             prev = true;
         }
         var menuItems = [data.watchapps.length];

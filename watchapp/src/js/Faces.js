@@ -45,7 +45,7 @@ function displayAllFaces(offset) {
         if (data.offset != null) {
             next = true;
         }
-        if (data.offset >= 20) {
+        if (data.offset > 20) {
             prev = true;
         }
         var menuItems = [data.watchfaces.length];
@@ -130,7 +130,7 @@ function displayFacesInCollection(collection, offset) {
         if (data.offset != null) {
             next = true;
         }
-        if (data.offset >= 20) {
+        if (data.offset > 20) {
             prev = true;
         }
         var menuItems = [data.watchfaces.length];
