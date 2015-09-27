@@ -1,7 +1,6 @@
 var functions = require('functions');
 var Vector2 = require('vector2');
 var UI = require('ui');
-var ajax = require('ajax');
 
 var SingleApp = module.exports;
 
@@ -79,6 +78,10 @@ SingleApp.display = function (appid) {
                 connection.binaryType = "arraybuffer";
                 connection.onerror = function (e) {
                     functions.showErrorCard('Error installing app!',preparing);
+                };
+                connection.onmessage = function(e){
+                    var data = new Uint8Array(e.data);
+                    console.log(data[0]);
                 };
                 connection.onopen = function() {
                     functions.showCard(null, 'Installing...','','', functions.getColorOptions('DATA'),preparing);
