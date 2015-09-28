@@ -31,6 +31,8 @@ SingleApp.display = function (appid) {
                 functions.showCard(null,
                                    data.appinfo.title,
                                    'by: ' + data.appinfo.author,
+                                   "Version: "+ data.appinfo.latest_release.version + "\n"+
+                                   "Hearts: " + data.appinfo.hearts + "\n\n"+
                                    data.appinfo.description,
                                    functions.getColorOptions('DATA'));
             } else if (e.itemIndex == 1) {
