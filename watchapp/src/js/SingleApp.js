@@ -28,7 +28,8 @@ SingleApp.display = function (appid) {
         var menu = new UI.Menu({
             sections: [{
                 title: data.appinfo.title, items: options
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
 
         menu.on('select', function (e) {

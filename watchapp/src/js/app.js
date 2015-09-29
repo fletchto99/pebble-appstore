@@ -19,7 +19,8 @@ setTimeout(function() {
     var mainMenu = new UI.Menu({
         sections: [{
             title: 'Appstore', items: menuItems
-        }]
+        }],
+        highlightBackgroundColor: 'orange'
     });
     mainMenu.show();
     mainMenu.on('select', function (event) {

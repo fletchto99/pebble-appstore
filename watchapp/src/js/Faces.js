@@ -16,7 +16,8 @@ Faces.display = function () {
     var facesMenu = new UI.Menu({
         sections: [{
             title: 'Appstore', items: menuItems
-        }]
+        }],
+        highlightBackgroundColor: 'orange'
     });
     facesMenu.show();
     facesMenu.on('select', function (event) {
@@ -67,7 +68,8 @@ function displayAllFaces(offset) {
             sections: [{
                 title: 'All Apps',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
@@ -102,7 +104,8 @@ function displayCollections() {
             sections: [{
                 title: 'Face Collections',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             displayFacesInCollection(event.item.slug, 0);
@@ -152,7 +155,8 @@ function displayFacesInCollection(collection, offset) {
             sections: [{
                 title: 'All Apps',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {

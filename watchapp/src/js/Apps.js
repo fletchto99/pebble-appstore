@@ -19,7 +19,8 @@ Apps.display = function () {
     var facesMenu = new UI.Menu({
         sections: [{
             title: 'Appstore', items: menuItems
-        }]
+        }],
+        highlightBackgroundColor: 'orange'
     });
     facesMenu.show();
     facesMenu.on('select', function (event) {
@@ -73,7 +74,8 @@ function displayAllApps(offset) {
             sections: [{
                 title: 'All Apps',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
@@ -109,7 +111,8 @@ function displayCategories() {
             sections: [{
                 title: 'App Categories',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             displayAppsInCategory(event.item.slug, 0);
@@ -160,7 +163,8 @@ function displayAppsInCategory(category, offset) {
             sections: [{
                 title: 'Apps',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
@@ -196,7 +200,8 @@ function displayCollections() {
             sections: [{
                 title: 'App Collections',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             if (event.itemIndex === data.collections.length) {
@@ -251,7 +256,8 @@ function displayAppsInCollection(collection, offset) {
             sections: [{
                 title: 'Apps',
                 items: menuItems
-            }]
+            }],
+            highlightBackgroundColor: 'orange'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
