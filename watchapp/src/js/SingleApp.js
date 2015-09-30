@@ -5,13 +5,11 @@ var PebbleProtocol = require('PebbleProtocol');
 
 var SingleApp = module.exports;
 
-var preparing = null;
 var installing = null;
 var error = null;
 
 SingleApp.display = function (appid) {
     //Reset status cards
-    preparing = null;
     installing = null;
     error = null;
     var data = {
@@ -83,7 +81,7 @@ SingleApp.display = function (appid) {
             //        }
             //    });
             } else if (e.itemIndex == 1) {
-                preparing = functions.showCard(null, 'Preparing...','','This should take no more than 5 seconds.', functions.getColorOptions('DATA'));
+                installing = functions.showCard(null, 'Preparing...','','This should take no more than 5 seconds.', functions.getColorOptions('DATA'));
                 //Open a connection to the developer connection running on the phone
                 var connection = new WebSocket('ws://localhost:9000');
                 connection.binaryType = "arraybuffer";
@@ -101,7 +99,8 @@ SingleApp.display = function (appid) {
 };
 
 var connectionOpened = function(pbw, connection) {
-    installing = functions.showCard(null, 'Installing...','','This can take up to 30 seconds.', functions.getColorOptions('DATA'), preparing);
+    installing.title('Requesting App');
+    installing.body('This may take up to 10 seconds');
 
     var request = new XMLHttpRequest();
 
@@ -126,6 +125,8 @@ var connectionOpened = function(pbw, connection) {
 
             //Send developer connection the bytes of the app
             connection.send(final_buffer);
+            installing.title('Installing...');
+            installing.body('This may take up to 15 seconds');
         }
     };
 
@@ -142,7 +143,6 @@ var messageRecieved = function(e) {
         mInboundParser.addBytes(data.subarray(1));
         while((data = mInboundParser.readMessage())) {
             var command = data.command;
-            var message = data.message;
             //The app manager (APLITE) sent us a command
             if (command == 6000) {
                 //The command is of length 633, it must be a failure (This is a really bad way to detect a fail, should use the Pebble Protocol instead)
@@ -158,6 +158,6 @@ var messageRecieved = function(e) {
 
 var unableToConnect = function() {
     if (error == null) {
-        error = functions.showErrorCard('Error installing app! Please ensure developer connection is enabled within the settings.',preparing);
+        error = functions.showErrorCard('Error installing app! Please ensure developer connection is enabled within the settings.',installing);
     }
 };
