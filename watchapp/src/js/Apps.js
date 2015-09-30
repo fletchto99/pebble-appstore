@@ -20,7 +20,7 @@ Apps.display = function () {
         sections: [{
             title: 'Appstore', items: menuItems
         }],
-        highlightBackgroundColor: 'orange'
+        highlightBackgroundColor: 'darkGreen'
     });
     facesMenu.show();
     facesMenu.on('select', function (event) {
@@ -75,7 +75,7 @@ function displayAllApps(offset) {
                 title: 'All Apps',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
@@ -112,7 +112,7 @@ function displayCategories() {
                 title: 'App Categories',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             displayAppsInCategory(event.item.slug, 0);
@@ -164,7 +164,7 @@ function displayAppsInCategory(category, offset) {
                 title: 'Apps',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
@@ -201,7 +201,7 @@ function displayCollections() {
                 title: 'App Collections',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             if (event.itemIndex === data.collections.length) {
@@ -257,7 +257,7 @@ function displayAppsInCollection(collection, offset) {
                 title: 'Apps',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {

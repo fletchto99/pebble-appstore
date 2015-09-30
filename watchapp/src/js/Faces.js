@@ -17,7 +17,7 @@ Faces.display = function () {
         sections: [{
             title: 'Appstore', items: menuItems
         }],
-        highlightBackgroundColor: 'orange'
+        highlightBackgroundColor: 'darkGreen'
     });
     facesMenu.show();
     facesMenu.on('select', function (event) {
@@ -69,7 +69,7 @@ function displayAllFaces(offset) {
                 title: 'All Apps',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {
@@ -105,7 +105,7 @@ function displayCollections() {
                 title: 'Face Collections',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             displayFacesInCollection(event.item.slug, 0);
@@ -156,7 +156,7 @@ function displayFacesInCollection(collection, offset) {
                 title: 'All Apps',
                 items: menuItems
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
             if (event.item == nextItem) {

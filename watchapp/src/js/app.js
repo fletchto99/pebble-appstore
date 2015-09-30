@@ -20,7 +20,7 @@ setTimeout(function() {
         sections: [{
             title: 'Appstore', items: menuItems
         }],
-        highlightBackgroundColor: 'orange'
+        highlightBackgroundColor: 'darkGreen'
     });
     mainMenu.show();
     mainMenu.on('select', function (event) {

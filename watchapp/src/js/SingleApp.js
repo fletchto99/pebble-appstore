@@ -7,10 +7,13 @@ var SingleApp = module.exports;
 
 var preparing = null;
 var installing = null;
+var error = null;
 
 SingleApp.display = function (appid) {
+    //Reset status cards
     preparing = null;
     installing = null;
+    error = null;
     var data = {
         method: 'single_app', platform: 'basalt', app_id: appid
     };
@@ -29,7 +32,7 @@ SingleApp.display = function (appid) {
             sections: [{
                 title: data.appinfo.title, items: options
             }],
-            highlightBackgroundColor: 'orange'
+            highlightBackgroundColor: 'darkGreen'
         });
 
         menu.on('select', function (e) {
@@ -125,14 +128,19 @@ var messageRecieved = function(e) {
         while((data = mInboundParser.readMessage())) {
             var command = data.command;
             var message = data.message;
-            console.log('Command recieved: ' + command);
             if (command == 6000) {
-                functions.showErrorCard('Unable to install app, applocker is full!',installing);
+                if (message.length == 633) {
+                    if (error == null) {
+                        error = functions.showErrorCard('Unable to install app, applocker is full!',installing);
+                    }
+                }
             }
         }
     }
 };
 
 var unableToConnect = function() {
-    functions.showErrorCard('Error installing app! Please ensure developer connection is enabled within the settings.',preparing);
+    if (error == null) {
+        error = functions.showErrorCard('Error installing app! Please ensure developer connection is enabled within the settings.',preparing);
+    }
 };
