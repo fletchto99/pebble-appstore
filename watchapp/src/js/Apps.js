@@ -61,7 +61,7 @@ function displayAllApps(offset) {
                 title: data.watchapps[i].title,
                 subtitle: 'By ' + data.watchapps[i].author,
                 id: data.watchapps[i].id,
-                //icon: data.watchapps[i].icon_image['28x28']
+                icon: data.watchapps[i].icon_image['28x28']
             };
         }
         if (next) {
@@ -150,7 +150,7 @@ function displayAppsInCategory(category, offset) {
                 title: data.watchapps[i].title,
                 subtitle: 'By ' + data.watchapps[i].author,
                 id: data.watchapps[i].id,
-                //icon: data.watchapps[i].icon_image['28x28']
+                icon: data.watchapps[i].icon_image['28x28']
             };
         }
         if (next) {
@@ -243,7 +243,7 @@ function displayAppsInCollection(collection, offset) {
                 title: data.watchapps[i].title,
                 subtitle: 'By ' + data.watchapps[i].author,
                 id: data.watchapps[i].id,
-                //icon: data.watchapps[i].icon_image['28x28']
+                icon: data.watchapps[i].icon_image['28x28']
             };
         }
         if (next) {
