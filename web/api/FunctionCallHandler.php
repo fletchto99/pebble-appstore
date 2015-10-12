@@ -10,6 +10,7 @@ require_once 'functions/AppsInCollection.php';
 require_once 'functions/FaceCollections.php';
 require_once 'functions/FacesInCollection.php';
 require_once 'functions/SingleApp.php';
+require_once 'functions/MaxOffset.php';
 
 class FunctionCallHandler {
 
@@ -53,6 +54,10 @@ class FunctionCallHandler {
             case 'single_app':
                 $faces = new SingleApp($params['platform'], $params['app_id']);
                 $this->result = $faces->execute();
+                break;
+            case 'max_offset':
+                $max = new MaxOffset($params['platform']);
+                $this->result = $max->execute();
                 break;
             default:
                 $this->result['error'] = 'Method '.$method.' does not exist!';
