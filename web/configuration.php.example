@@ -16,6 +16,11 @@ class Configuration {
     CONST PEBBLE_ALL_WATCHFACES = "apps/collection/all/watchfaces";
     CONST PEBBLE_SINGLE_APP = "apps/id/";
 
+    //API Keys
+    CONST AGOLIA_API_KEY = "<API_KEY>";
+    CONST AGOLIA_APP_ID = "<APP_ID>";
+    CONST AGOLIA_API_URL = "<QUERY_URL>";
+
     //Developer settings
     CONST DEBUG              = false;
     CONST DEVELOPER_PASSWORD = '<PASSWORD>';

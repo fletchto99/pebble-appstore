@@ -11,6 +11,7 @@ require_once 'functions/FaceCollections.php';
 require_once 'functions/FacesInCollection.php';
 require_once 'functions/SingleApp.php';
 require_once 'functions/MaxOffset.php';
+require_once 'functions/Search.php';
 
 class FunctionCallHandler {
 
@@ -58,6 +59,10 @@ class FunctionCallHandler {
             case 'max_offset':
                 $max = new MaxOffset($params['platform']);
                 $this->result = $max->execute();
+                break;
+            case 'search':
+                $search = new Search($params['query'], $params['platform']);
+                $this->result = $search->execute();
                 break;
             default:
                 $this->result['error'] = 'Method '.$method.' does not exist!';
