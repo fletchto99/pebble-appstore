@@ -2,6 +2,7 @@ var functions = require('functions');
 var UI = require('ui');
 var singleapp = require('SingleApp');
 var platform = require('platform');
+var voice = require('ui/voice');
 
 var Apps = module.exports;
 
@@ -14,6 +15,9 @@ Apps.display = function () {
         icon: 'IMAGE_CATEGORY_ICON'
     }, {
         title: 'Collections',
+        icon: 'IMAGE_COLLECTION_ICON'
+    }, {
+        title: 'Search',
         icon: 'IMAGE_COLLECTION_ICON'
     }];
     var facesMenu = new UI.Menu({
@@ -30,6 +34,8 @@ Apps.display = function () {
             displayCategories();
         } else if (event.itemIndex === 2) {
             displayCollections();
+        } else if (event.itemIndex === 3) {
+            displaySearch();
         }
     });
 };
@@ -273,4 +279,42 @@ function displayAppsInCollection(collection, offset) {
         menu.show();
     };
     functions.apiCall('Populating apps',data,onSuccess);
+}
+
+function displaySearch() {
+
+    var onSuccess = function(data) {
+        var menuItems = [data.watchapps.length];
+        for (var i = 0; i < data.watchapps.length; i++) {
+            menuItems[i] = {
+                title: data.watchapps[i].title,
+                subtitle: 'By ' + data.watchapps[i].author,
+                id: data.watchapps[i].id,
+                icon: data.watchapps[i].icon_image['28x28']
+            };
+        }
+        var menu = new UI.Menu({
+            sections: [{
+                title: 'Apps',
+                items: menuItems
+            }],
+            highlightBackgroundColor: 'darkGreen'
+        });
+        menu.on('select', function(event) {
+                singleapp.display(event.item.id);
+        });
+        menu.show();
+    };
+    voice.dictate('start', function(e) {
+        if (e.err) {
+            functions.showErrorCard('Error capturing dictation session');
+            return;
+        }
+        var data = {
+            method: 'search',
+            platform: platform.version(),
+            query: e.transcription
+        };
+        functions.apiCall('Searching...', data, onSuccess);
+    });
 }

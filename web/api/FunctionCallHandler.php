@@ -61,7 +61,7 @@ class FunctionCallHandler {
                 $this->result = $max->execute();
                 break;
             case 'search':
-                $search = new Search($params['query'], $params['platform']);
+                $search = new Search($params['query'], $params['platform'], isset($params['type']) ? $params['type'] : 'watchapp');
                 $this->result = $search->execute();
                 break;
             default:
