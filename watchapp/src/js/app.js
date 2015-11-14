@@ -3,7 +3,6 @@ var UI = require('ui');
 var about = require('About');
 var faces = require('Faces');
 var apps = require('Apps');
-var voice = require('ui/voice');
 
 //Setup the app, display a splash screen
 setTimeout(function() {
@@ -11,7 +10,7 @@ setTimeout(function() {
         title: 'Apps',
         icon: 'IMAGE_APPS_ICON'
     }, {
-        title: 'Root search',
+        title: 'Faces',
         icon: 'IMAGE_WATCHFACES_ICON'
     }, {
         title: 'About',
@@ -28,20 +27,7 @@ setTimeout(function() {
         if (event.itemIndex === 0) {
             apps.display();
         } else if (event.itemIndex === 1) {
-            //faces.display();
-            voice.dictate('start', function(e) {
-                console.log('hi');
-                //if (e.err) {
-                //    functions.showErrorCard('Error capturing dictation session');
-                //    return;
-                //}
-                //var data = {
-                //    method: 'search',
-                //    platform: platform.version(),
-                //    query: e.transcription
-                //};
-                //functions.apiCall('Searching...', data, onSuccess);
-            });
+            faces.display();
         } else if (event.itemIndex === 2) {
             about.display();
         }

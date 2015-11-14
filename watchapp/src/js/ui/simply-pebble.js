@@ -1185,12 +1185,16 @@ SimplyPebble.voiceDictationStop = function() {
 }
 
 SimplyPebble.onVoiceData = function(packet) {
+  // show the top window to re-register handlers, etc.
+  state.dictationWindow.show();
+  state.dictationWindow = null;
+
   if (!state.dictationCallback) {
     // Something bad happened
     console.log("No callback specified for dictation session");
   } else {
     var e = {
-      'err': DictationSessionStatus[packet.status()], 
+      'err': DictationSessionStatus[packet.status()],
       'failed': packet.status() != 0,
       'transcription': packet.transcription(),
     };
@@ -1198,11 +1202,7 @@ SimplyPebble.onVoiceData = function(packet) {
     state.dictationCallback(e);
     state.dictationCallback = null;
   }
-
-  // show the top window to re-register handlers, etc. 
-  state.dictationWindow.show();
-  state.dictationWindow = null;
-}
+};
 
 SimplyPebble.menuClear = function() {
   SimplyPebble.sendPacket(MenuClearPacket);

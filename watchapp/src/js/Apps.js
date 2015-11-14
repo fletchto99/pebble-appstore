@@ -306,16 +306,15 @@ function displaySearch() {
         menu.show();
     };
     voice.dictate('start', function(e) {
-        console.log('hi');
-        //if (e.err) {
-        //    functions.showErrorCard('Error capturing dictation session');
-        //    return;
-        //}
-        //var data = {
-        //    method: 'search',
-        //    platform: platform.version(),
-        //    query: e.transcription
-        //};
-        //functions.apiCall('Searching...', data, onSuccess);
+        if (e.err) {
+            functions.showErrorCard('Error capturing dictation session');
+            return;
+        }
+        var data = {
+            method: 'search',
+            platform: platform.version(),
+            query: e.transcription
+        };
+        functions.apiCall('Searching...', data, onSuccess);
     });
 }
