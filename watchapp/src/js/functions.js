@@ -79,7 +79,7 @@ functions.apiCall = function(status, data, successCallback) {
             loadingCard.hide();
             successCallback(data);
         }
-    }, function (error) {
+    }, function () {
         functions.showErrorCard('Error contacting server.', loadingCard);
     });
 };

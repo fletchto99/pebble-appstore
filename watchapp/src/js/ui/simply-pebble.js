@@ -1017,9 +1017,9 @@ SimplyPebble.ready = function() {
 
 SimplyPebble.wakeupSet = function(timestamp, cookie, notifyIfMissed) {
   WakeupSetPacket
-    .timestamp(timestamp)
-    .cookie(cookie)
-    .notifyIfMissed(notifyIfMissed);
+      .timestamp(timestamp)
+      .cookie(cookie)
+      .notifyIfMissed(notifyIfMissed);
   SimplyPebble.sendPacket(WakeupSetPacket);
 };
 
@@ -1037,8 +1037,8 @@ SimplyPebble.windowHide = function(id) {
 
 SimplyPebble.windowProps = function(def) {
   WindowPropsPacket
-    .prop(def)
-    .backgroundColor(def.backgroundColor || 'white');
+      .prop(def)
+      .backgroundColor(def.backgroundColor || 'white');
   SimplyPebble.sendPacket(WindowPropsPacket);
 };
 
@@ -1056,11 +1056,11 @@ var toActionDef = function(actionDef) {
 SimplyPebble.windowActionBar = function(def) {
   var actionDef = toActionDef(def);
   WindowActionBarPacket
-    .up(actionDef.up)
-    .select(actionDef.select)
-    .down(actionDef.down)
-    .action(typeof def === 'boolean' ? def : true)
-    .backgroundColor(actionDef.backgroundColor || 'black');
+      .up(actionDef.up)
+      .select(actionDef.select)
+      .down(actionDef.down)
+      .action(typeof def === 'boolean' ? def : true)
+      .backgroundColor(actionDef.backgroundColor || 'black');
   SimplyPebble.sendPacket(WindowActionBarPacket);
 };
 
@@ -1091,9 +1091,9 @@ SimplyPebble.cardClear = function(clear) {
 
 SimplyPebble.cardText = function(field, text, color) {
   CardTextPacket
-    .index(field)
-    .color(color || 'clearWhite')
-    .text(text || '');
+      .index(field)
+      .color(color || 'clearWhite')
+      .text(text || '');
   SimplyPebble.sendPacket(CardTextPacket);
 };
 
@@ -1156,7 +1156,7 @@ SimplyPebble.voiceDictationStart = function(callback, enableConfirmation) {
       'failed': true,
       'transcription': null,
     };
-    
+
     // Invoke the callback and return    
     callback(e);
     return;
@@ -1185,14 +1185,15 @@ SimplyPebble.voiceDictationStop = function() {
 }
 
 SimplyPebble.onVoiceData = function(packet) {
-  // show the top window to re-register handlers, etc.
-  state.dictationWindow.show();
-  state.dictationWindow = null;
-
   if (!state.dictationCallback) {
     // Something bad happened
     console.log("No callback specified for dictation session");
   } else {
+
+    // show the top window to re-register handlers, etc.
+    state.dictationWindow.show();
+    state.dictationWindow = null;
+
     var e = {
       'err': DictationSessionStatus[packet.status()],
       'failed': packet.status() != 0,
@@ -1202,7 +1203,7 @@ SimplyPebble.onVoiceData = function(packet) {
     state.dictationCallback(e);
     state.dictationCallback = null;
   }
-};
+}
 
 SimplyPebble.menuClear = function() {
   SimplyPebble.sendPacket(MenuClearPacket);
@@ -1221,22 +1222,22 @@ SimplyPebble.menuSection = function(section, def, clear) {
     SimplyPebble.menuClearSection(section);
   }
   MenuSectionPacket
-    .section(section)
-    .items(def.items)
-    .titleLength(def.title)
-    .title(def.title);
+      .section(section)
+      .items(def.items)
+      .titleLength(def.title)
+      .title(def.title);
   SimplyPebble.sendPacket(MenuSectionPacket);
 };
 
 SimplyPebble.menuItem = function(section, item, def) {
   MenuItemPacket
-    .section(section)
-    .item(item)
-    .icon(def.icon)
-    .titleLength(def.title)
-    .subtitleLength(def.subtitle)
-    .title(def.title)
-    .subtitle(def.subtitle);
+      .section(section)
+      .item(item)
+      .icon(def.icon)
+      .titleLength(def.title)
+      .subtitleLength(def.subtitle)
+      .title(def.title)
+      .subtitle(def.subtitle);
   SimplyPebble.sendPacket(MenuItemPacket);
 };
 
@@ -1269,10 +1270,10 @@ SimplyPebble.elementRemove = function(id) {
 
 SimplyPebble.elementCommon = function(id, def) {
   ElementCommonPacket
-    .id(id)
-    .position(def.position)
-    .size(def.size)
-    .prop(def);
+      .id(id)
+      .position(def.position)
+      .size(def.size)
+      .prop(def);
   SimplyPebble.sendPacket(ElementCommonPacket);
 };
 
@@ -1301,11 +1302,11 @@ SimplyPebble.elementImage = function(id, image, compositing) {
 
 SimplyPebble.elementAnimate = function(id, def, animateDef, duration, easing) {
   ElementAnimatePacket
-    .id(id)
-    .position(animateDef.position || def.position)
-    .size(animateDef.size || def.size)
-    .duration(duration)
-    .easing(easing);
+      .id(id)
+      .position(animateDef.position || def.position)
+      .size(animateDef.size || def.size)
+      .duration(duration)
+      .easing(easing);
   SimplyPebble.sendPacket(ElementAnimatePacket);
 };
 
@@ -1480,7 +1481,7 @@ SimplyPebble.onPacket = function(buffer, offset) {
 
 SimplyPebble.onAppMessage = function(e) {
   var data = e.payload[0];
-  
+
   Packet._view = toArrayBuffer(data);
 
   var offset = 0;
@@ -1495,4 +1496,3 @@ SimplyPebble.onAppMessage = function(e) {
 };
 
 module.exports = SimplyPebble;
-

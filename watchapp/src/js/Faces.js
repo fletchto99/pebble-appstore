@@ -2,6 +2,7 @@ var functions = require('functions');
 var UI = require('ui');
 var singleapp = require('SingleApp');
 var platform = require('platform');
+var voice = require('ui/voice');
 
 var Faces = module.exports;
 
@@ -13,6 +14,14 @@ Faces.display = function () {
         title: 'Collections',
         icon: 'IMAGE_COLLECTION_ICON'
     }];
+    var offset = 0;
+    if (platform.version() !== 'aplite') {
+        menuItems.unshift({
+            title: 'Search',
+            icon: 'IMAGE_SEARCH_ICON'
+        });
+        offset++;
+    }
     var facesMenu = new UI.Menu({
         sections: [{
             title: 'Appstore', items: menuItems
@@ -21,9 +30,11 @@ Faces.display = function () {
     });
     facesMenu.show();
     facesMenu.on('select', function (event) {
-        if (event.itemIndex === 0) {
+        if (event.itemIndex === 0 && offset > 0) {
+            displaySearch();
+        } else if (event.itemIndex === offset) {
             displayAllFaces(0);
-        } else if (event.itemIndex === 1) {
+        } else if (event.itemIndex === 1 + offset) {
             displayCollections(0);
         }
     });
@@ -172,4 +183,24 @@ function displayFacesInCollection(collection, offset) {
         menu.show();
     };
     functions.apiCall('Populating apps',data,onSuccess);
+}
+
+function displaySearch() {
+
+    var onSuccess = function(data) {
+        singleapp.display(data.appinfo.id);
+    };
+    voice.dictate('start', function(e) {
+        if (e.err) {
+            functions.showErrorCard('Error capturing dictation session');
+            return;
+        }
+        var data = {
+            method: 'search',
+            platform: platform.version(),
+            query: e.transcription,
+            type: 'watchface'
+        };
+        functions.apiCall('Searching...', data, onSuccess);
+    });
 }

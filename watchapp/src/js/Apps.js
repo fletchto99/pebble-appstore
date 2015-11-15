@@ -16,26 +16,31 @@ Apps.display = function () {
     }, {
         title: 'Collections',
         icon: 'IMAGE_COLLECTION_ICON'
-    }, {
-        title: 'Search',
-        icon: 'IMAGE_COLLECTION_ICON'
     }];
-    var facesMenu = new UI.Menu({
+    var offset = 0;
+    if (platform.version() !== 'aplite') {
+        menuItems.unshift({
+            title: 'Search',
+            icon: 'IMAGE_SEARCH_ICON'
+        });
+        offset++;
+    }
+    var appsMenu = new UI.Menu({
         sections: [{
             title: 'Appstore', items: menuItems
         }],
         highlightBackgroundColor: 'darkGreen'
     });
-    facesMenu.show();
-    facesMenu.on('select', function (event) {
-        if (event.itemIndex === 0) {
-            displayAllApps(0);
-        } else if (event.itemIndex === 1) {
-            displayCategories();
-        } else if (event.itemIndex === 2) {
-            displayCollections();
-        } else if (event.itemIndex === 3) {
+    appsMenu.show();
+    appsMenu.on('select', function (event) {
+        if (event.itemIndex === 0 && offset > 0) {
             displaySearch();
+        } else if (event.itemIndex === offset) {
+            displayAllApps(0);
+        } else if (event.itemIndex === 1 + offset) {
+            displayCategories();
+        } else if (event.itemIndex === 2 + offset) {
+            displayCollections();
         }
     });
 };
@@ -67,7 +72,7 @@ function displayAllApps(offset) {
                 title: data.watchapps[i].title,
                 subtitle: 'By ' + data.watchapps[i].author,
                 id: data.watchapps[i].id,
-                icon: data.watchapps[i].icon_image['28x28']
+                //icon: data.watchapps[i].icon_image['28x28']
             };
         }
         if (next) {
@@ -156,7 +161,7 @@ function displayAppsInCategory(category, offset) {
                 title: data.watchapps[i].title,
                 subtitle: 'By ' + data.watchapps[i].author,
                 id: data.watchapps[i].id,
-                icon: data.watchapps[i].icon_image['28x28']
+                //icon: data.watchapps[i].icon_image['28x28']
             };
         }
         if (next) {
@@ -249,7 +254,7 @@ function displayAppsInCollection(collection, offset) {
                 title: data.watchapps[i].title,
                 subtitle: 'By ' + data.watchapps[i].author,
                 id: data.watchapps[i].id,
-                icon: data.watchapps[i].icon_image['28x28']
+                //icon: data.watchapps[i].icon_image['28x28']
             };
         }
         if (next) {
@@ -284,26 +289,7 @@ function displayAppsInCollection(collection, offset) {
 function displaySearch() {
 
     var onSuccess = function(data) {
-        var menuItems = [data.watchapps.length];
-        for (var i = 0; i < data.watchapps.length; i++) {
-            menuItems[i] = {
-                title: data.watchapps[i].title,
-                subtitle: 'By ' + data.watchapps[i].author,
-                id: data.watchapps[i].id,
-                icon: data.watchapps[i].icon_image['28x28']
-            };
-        }
-        var menu = new UI.Menu({
-            sections: [{
-                title: 'Apps',
-                items: menuItems
-            }],
-            highlightBackgroundColor: 'darkGreen'
-        });
-        menu.on('select', function(event) {
-                singleapp.display(event.item.id);
-        });
-        menu.show();
+        singleapp.display(data.appinfo.id);
     };
     voice.dictate('start', function(e) {
         if (e.err) {
@@ -313,7 +299,8 @@ function displaySearch() {
         var data = {
             method: 'search',
             platform: platform.version(),
-            query: e.transcription
+            query: e.transcription,
+            type: 'watchapp'
         };
         functions.apiCall('Searching...', data, onSuccess);
     });

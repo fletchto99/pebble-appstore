@@ -30,6 +30,11 @@
                   },
                   {
                     "type": "png",
+                    "name": "IMAGE_SEARCH_ICON",
+                    "file": "images/search.png"
+                  },
+                  {
+                    "type": "png",
                     "name": "IMAGE_CATEGORY_ICON",
                     "file": "images/categories.png"
                   },
@@ -68,8 +73,7 @@
     "sdkVersion": "3",
     "targetPlatforms": [
                         "aplite",
-                        "basalt",
-                        "chalk"
+                        "basalt"
                         ],
     "uuid": "2e0e9537-a9e6-4aa5-a4e2-38c018fb7de6",
     "versionLabel": "1.01",
