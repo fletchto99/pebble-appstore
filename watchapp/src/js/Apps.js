@@ -89,10 +89,11 @@ function displayAllApps(offset) {
             highlightBackgroundColor: 'darkGreen'
         });
         menu.on('select', function(event) {
+            console.log('selected??');
             if (event.item == nextItem) {
                 displayAllApps(data.offset);
                 menu.hide();
-            } if (event.item == prevItem) {
+            } else if (event.item == prevItem) {
                 displayAllApps(Math.max(0 ,offset - 20));
                 menu.hide();
             } else {
@@ -181,7 +182,7 @@ function displayAppsInCategory(category, offset) {
             if (event.item == nextItem) {
                 displayAppsInCategory(category, data.offset);
                 menu.hide();
-            } if (event.item == prevItem) {
+            } else if (event.item == prevItem) {
                 displayAppsInCategory(category, Math.max(0 ,offset - 20));
                 menu.hide();
             } else {
@@ -274,7 +275,7 @@ function displayAppsInCollection(collection, offset) {
             if (event.item == nextItem) {
                 displayAppsInCollection(collection, data.offset);
                 menu.hide();
-            } if (event.item == prevItem) {
+            } else if (event.item == prevItem) {
                 displayAppsInCollection(collection, Math.max(0 ,offset - 20));
                 menu.hide();
             } else {

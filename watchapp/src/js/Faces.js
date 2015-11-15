@@ -86,7 +86,7 @@ function displayAllFaces(offset) {
             if (event.item == nextItem) {
                 displayAllFaces(data.offset);
                 menu.hide();
-            } if (event.item == prevItem) {
+            } else if (event.item == prevItem) {
                 displayAllFaces(Math.max(0 ,offset - 20));
                 menu.hide();
             } else {
@@ -173,7 +173,7 @@ function displayFacesInCollection(collection, offset) {
             if (event.item == nextItem) {
                 displayFacesInCollection(collection,data.offset);
                 menu.hide();
-            } if (event.item == prevItem) {
+            } else if (event.item == prevItem) {
                 displayFacesInCollection(collection,Math.max(0 ,offset - 20));
                 menu.hide();
             } else {
