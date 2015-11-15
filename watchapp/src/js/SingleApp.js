@@ -21,9 +21,8 @@ SingleApp.display = function (appid) {
 
         var options = [{
             title: 'Info'
-        }, {
-            title: 'Image'
-            //title: 'Images'
+        //}, {
+        //    title: 'Images'
         }, {
             title: 'Install'
         }];
@@ -44,28 +43,28 @@ SingleApp.display = function (appid) {
                                    "Hearts: " + data.appinfo.hearts + "\n\n"+
                                    data.appinfo.description,
                                    functions.getColorOptions('DATA'));
-            } else if (e.itemIndex == 1) {
-                if (platform.version() == 'aplite') {
-                    functions.showErrorCard('Sorry, images are not supported on your platform, yet! :(');
-                    return;
-                }
-                var generateImage = function (index) {
-                    return new UI.Image({
-                        position: new Vector2(0, 0),
-                        size: new Vector2(144, 168),
-                        image: data.appinfo.screenshot_images[index]['144x168']
-                    });
-                };
-                var image_index = 0;
-                var image = generateImage(image_index);
-
-
-                var container = new UI.Window({
-                    fullscreen: true, scrollable: false
-                });
-
-                container.add(image);
-                container.show();
+            //} else if (e.itemIndex == 1) {
+            //    if (platform.version() == 'aplite') {
+            //        functions.showErrorCard('Sorry, images are not supported on your platform, yet! :(');
+            //        return;
+            //    }
+            //    var generateImage = function (index) {
+            //        return new UI.Image({
+            //            position: new Vector2(0, 0),
+            //            size: new Vector2(144, 168),
+            //            image: data.appinfo.screenshot_images[index]['144x168']
+            //        });
+            //    };
+            //    var image_index = 0;
+            //    var image = generateImage(image_index);
+            //
+            //
+            //    var container = new UI.Window({
+            //        fullscreen: true, scrollable: false
+            //    });
+            //
+            //    container.add(image);
+            //    container.show();
 
                 //var updateImage = function (dir) {
                 //    container.remove(image);
@@ -86,7 +85,7 @@ SingleApp.display = function (appid) {
                 //        updateImage('up');
                 //    }
                 //});
-            } else if (e.itemIndex == 2) {
+            } else if (e.itemIndex == 1) {
                 installing = functions.showCard(null, 'Preparing...','','This should take no more than 5 seconds.', functions.getColorOptions('DATA'));
                 //Open a connection to the developer connection running on the phone
                 var connection = new WebSocket('ws://localhost:9000');
