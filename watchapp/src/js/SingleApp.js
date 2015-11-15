@@ -2,6 +2,7 @@ var functions = require('functions');
 var Vector2 = require('vector2');
 var UI = require('ui');
 var PebbleProtocol = require('PebbleProtocol');
+var platform = require('platform');
 
 var SingleApp = module.exports;
 
@@ -13,7 +14,7 @@ SingleApp.display = function (appid) {
     installing = null;
     error = null;
     var data = {
-        method: 'single_app', platform: 'basalt', app_id: appid
+        method: 'single_app', platform: platform.version(), app_id: appid
     };
 
     var onSuccess = function (data) {
@@ -44,6 +45,10 @@ SingleApp.display = function (appid) {
                                    data.appinfo.description,
                                    functions.getColorOptions('DATA'));
             } else if (e.itemIndex == 1) {
+                if (platform.version() == 'aplite') {
+                    functions.showErrorCard('Sorry, images are not supported on your platform, yet! :(');
+                    return;
+                }
                 var generateImage = function (index) {
                     return new UI.Image({
                         position: new Vector2(0, 0),
