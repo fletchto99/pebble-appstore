@@ -1,83 +1,82 @@
 {
-    "appKeys": {},
-    "capabilities": [],
-    "companyName": "fletch_to_99",
-    "shortName": "Appstore",
-    "longName": "Appstore",
-    "projectType": "native",
-    "resources": {
-        "media": [
-                  {
-                  "menuIcon": true,
-                  "type": "png",
-                  "name": "IMAGE_MENU_ICON",
-                  "file": "images/menu_icon.png"
-                  },
-                  {
-                  "type": "png",
-                  "name": "IMAGE_LOGO_SPLASH",
-                  "file": "images/logo_splash.png"
-                  },
-                  {
-                  "type": "png",
-                  "name": "IMAGE_TILE_SPLASH",
-                  "file": "images/tile_splash.png"
-                  },
-                  {
-                  "type": "png",
-                  "name": "IMAGE_INFO_ICON",
-                  "file": "images/info.png"
-                  },
-                  {
-                    "type": "png",
-                    "name": "IMAGE_SEARCH_ICON",
-                    "file": "images/search.png"
-                  },
-                  {
-                    "type": "png",
-                    "name": "IMAGE_CATEGORY_ICON",
-                    "file": "images/categories.png"
-                  },
-                  {
-                    "type": "png",
-                    "name": "IMAGE_COLLECTION_ICON",
-                    "file": "images/collections.png"
-                  },
-                  {
-                    "type": "png",
-                    "name": "IMAGE_APPS_ICON",
-                    "file": "images/apps.png"
-                  },
-                  {
-                    "type": "png",
-                    "name": "IMAGE_WATCHFACES_ICON",
-                    "file": "images/watchface.png"
-                  },
-                  {
-                    "type": "png",
-                    "name": "IMAGE_LOADING_ICON",
-                    "file": "images/loading.png"
-                  },
-                  {
-                  "type": "png",
-                  "name": "IMAGE_ERROR_ICON",
-                  "file": "images/error.png"
-                  },
-                  {
-                  "type": "font",
-                  "name": "MONO_FONT_14",
-                  "file": "fonts/UbuntuMono-Regular.ttf"
-                  }
-                  ]
-    },
-    "sdkVersion": "3",
-    "targetPlatforms": [
-                        "aplite",
-                        "basalt"
-                        ],
-    "uuid": "2e0e9537-a9e6-4aa5-a4e2-38c018fb7de6",
-    "versionLabel": "1.03",
-    "watchapp": {
-        "watchface": false
-    }
+  "appKeys": {},
+  "capabilities": [],
+  "companyName": "fletch_to_99",
+  "longName": "Appstore",
+  "resources": {
+    "media": [
+      {
+        "file": "images/menu_icon.png",
+        "menuIcon": true,
+        "name": "IMAGE_MENU_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/logo_splash.png",
+        "name": "IMAGE_LOGO_SPLASH",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/tile_splash.png",
+        "name": "IMAGE_TILE_SPLASH",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/info.png",
+        "name": "IMAGE_INFO_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/search.png",
+        "name": "IMAGE_SEARCH_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/categories.png",
+        "name": "IMAGE_CATEGORY_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/collections.png",
+        "name": "IMAGE_COLLECTION_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/apps.png",
+        "name": "IMAGE_APPS_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/watchface.png",
+        "name": "IMAGE_WATCHFACES_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/loading.png",
+        "name": "IMAGE_LOADING_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "images/error.png",
+        "name": "IMAGE_ERROR_ICON",
+        "type": "bitmap"
+      },
+      {
+        "file": "fonts/UbuntuMono-Regular.ttf",
+        "name": "MONO_FONT_14",
+        "type": "font"
+      }
+    ]
+  },
+  "sdkVersion": "3",
+  "shortName": "Appstore",
+  "targetPlatforms": [
+    "aplite",
+    "basalt"
+  ],
+  "uuid": "2e0e9537-a9e6-4aa5-a4e2-38c018fb7de6",
+  "versionLabel": "1.04",
+  "watchapp": {
+    "watchface": false
+  }
 }
