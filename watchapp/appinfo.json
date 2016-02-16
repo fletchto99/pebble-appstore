@@ -72,10 +72,11 @@
   "shortName": "Appstore",
   "targetPlatforms": [
     "aplite",
-    "basalt"
+    "basalt",
+    "chalk"
   ],
   "uuid": "2e0e9537-a9e6-4aa5-a4e2-38c018fb7de6",
-  "versionLabel": "1.04",
+  "versionLabel": "1.05",
   "watchapp": {
     "watchface": false
   }
